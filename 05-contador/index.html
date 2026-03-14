@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contador</title>
   <link rel="stylesheet" href="style.css"/>
+  <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -17,27 +18,25 @@
 
     <div class="campo">
       <label>Início</label>
-      <input type="number" placeholder="Ex: 1"/>
+      <input id="inicio" type="number" placeholder="Ex: 1"/>
     </div>
 
     <div class="campo">
       <label>Fim</label>
-      <input type="number" placeholder="Ex: 20"/>
+      <input id="fim" type="number" placeholder="Ex: 20"/>
     </div>
 
     <div class="campo">
       <label>Salto</label>
-      <input type="number" placeholder="Ex: 2"/>
+      <input id="salto" type="number" placeholder="Ex: 2"/>
     </div>
 
-    <button>Gerar Contagem</button>
+    <button onclick=gerarContagem()>Gerar Contagem</button>
 
     <div class="resultado">
       <p class="resultado-titulo">Resultado</p>
-      <ul>
-        <li>1</li>
-        <li>3</li>
-        <li>5</li>
+      <ul id="lista">
+        
       </ul>
     </div>
 
