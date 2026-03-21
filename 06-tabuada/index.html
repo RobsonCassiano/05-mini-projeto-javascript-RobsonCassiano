@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tabuada</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -19,10 +20,10 @@
 
     <div class="campo">
       <label>Número</label>
-      <input type="number" placeholder="Ex: 7" />
+      <input id="numero" type="number" placeholder="Ex: 7" />
     </div>
 
-    <button>Gerar Tabuada</button>
+    <button onclick="gerarTabuada()">Gerar Tabuada</button>
 
     <div class="resultado">
       <p class="resultado-titulo">Resultado</p>
@@ -33,19 +34,7 @@
             <th>Resultado</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>7 x 1</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>7 x 2</td>
-            <td>14</td>
-          </tr>
-          <tr>
-            <td>7 x 3</td>
-            <td>21</td>
-          </tr>
+        <tbody id="lista">                   
         </tbody>
       </table>
     </div>
