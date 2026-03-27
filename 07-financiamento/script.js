@@ -7,6 +7,12 @@ const numParcelasInput = document.getElementById('numParcelas');
 const valorParcelaInput = document.getElementById('valorParcela');
 const botaoSimular = document.querySelector('button');
 const tabelaCorpo = document.getElementById('tabelaCorpo');
+const cabecalhoAmortizacao = document.querySelector('thead th:nth-child(4)');
+
+// Ajustar o titulo da 4a coluna sem alterar o HTML original do exercicio.
+if (cabecalhoAmortizacao) {
+  cabecalhoAmortizacao.textContent = 'Amortizacao';
+}
 
 // Passo 2: Sempre que o usuario digitar nos campos principais, recalcular a parcela automaticamente.
 valorTotalInput.addEventListener('input', atualizarValorParcela);
@@ -93,14 +99,14 @@ function simularFinanciamento() {
 
   // Passo 8: Repetir o calculo para cada mes da simulacao.
   for (let mes = 1; mes <= numParcelas; mes += 1) {
-    // Calcular o saldo com os juros compostos aplicados naquele mes.
-    let saldoComJuros = saldoDevedor * (1 + taxaMensal);
-
     // Descobrir quanto de juros foi cobrado no mes atual.
-    let jurosDoMes = saldoComJuros - saldoDevedor;
+    let jurosDoMes = saldoDevedor * taxaMensal;
 
-    // Subtrair a parcela paga para encontrar o novo saldo devedor.
-    saldoDevedor = saldoComJuros - valorParcela;
+    // Calcular quanto da parcela realmente reduz a divida.
+    let amortizacaoDoMes = valorParcela - jurosDoMes;
+
+    // Atualizar o saldo devedor considerando juros do periodo e a parcela paga.
+    saldoDevedor = saldoDevedor + jurosDoMes - valorParcela;
 
     // Evitar que o saldo final fique negativo por causa de arredondamentos.
     if (saldoDevedor < 0) {
@@ -115,7 +121,7 @@ function simularFinanciamento() {
       { texto: mes },
       { texto: formatarMoeda(jurosDoMes), classe: 'col-juros' },
       { texto: formatarMoeda(valorParcela) },
-      { texto: formatarMoeda(saldoComJuros), classe: 'col-total' },
+      { texto: formatarMoeda(amortizacaoDoMes), classe: 'col-total' },
       { texto: formatarMoeda(saldoDevedor), classe: 'col-saldo' }
     ];
 
